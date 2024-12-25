@@ -1,7 +1,7 @@
-import App from "@/container/App/App";
+import App from '@/container/App/App';
 
 const Page = () => {
-  return <App />;
+	return <App />;
 };
 
 export default Page;
