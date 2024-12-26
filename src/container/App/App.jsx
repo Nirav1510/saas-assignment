@@ -39,83 +39,72 @@ const App = () => {
 	}, [projects, indexOfFirstRecord, indexOfLastRecord]);
 
 	return (
-		<div className='container mx-auto p-4'>
-			<h1 className='text-2xl font-bold text-center mb-6' id='page-title'>
-				Saas Frontend Assignment
-			</h1>
+		<div className='flex justify-center items-center min-h-screen relative overflow-hidden'>
+			{/* Animated Background */}
+			<div className='absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-gradient blur-3xl -z-10'></div>
 
-			<div className='overflow-x-auto shadow-lg rounded-lg'>
-				<table
-					role='table'
-					aria-labelledby='page-title'
-					className='min-w-full table-auto border-collapse border border-gray-200'
+			<div className='bg-white shadow-2xl rounded-xl p-8 w-full max-w-3xl'>
+				<h1
+					id='page-title'
+					className='text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text'
 				>
-					<thead className='bg-gray-100'>
-						<tr role='row'>
-							<th className='py-2 px-4 border-b' scope='col' aria-label='Serial Number'>
-								S.No.
-							</th>
-							<th className='py-2 px-4 border-b' scope='col' aria-label='Project Title'>
-								Title
-							</th>
-							<th className='py-2 px-4 border-b' scope='col' aria-label='Percentage Funded'>
-								Percentage Funded
-							</th>
-							<th className='py-2 px-4 border-b' scope='col' aria-label='Amount Pledged'>
-								Amount Pledged
-							</th>
-							<th className='py-2 px-4 border-b' scope='col' aria-label='Location'>
-								Location
-							</th>
-						</tr>
-					</thead>
+					SaaS Frontend Assignment
+				</h1>
 
-					<tbody>
-						{currentRecords.map((project, index) => (
-							<tr
-								key={project['s.no']}
-								className='hover:bg-gray-50 transition-colors duration-200 ease-in-out'
-								role='row'
-							>
-								<td className='py-2 px-4 border-b text-center' role='cell'>
-									{indexOfFirstRecord + index + 1}
-								</td>
-								<td className='py-2 px-4 border-b' role='cell'>
-									{project.title}
-								</td>
-								<td className='py-2 px-4 border-b text-center' role='cell'>
-									{project['percentage.funded']}%
-								</td>
-								<td className='py-2 px-4 border-b text-center' role='cell'>
-									${project['amt.pledged'].toLocaleString()}
-								</td>
-								<td className='py-2 px-4 border-b text-center' role='cell'>
-									{project.location}
-								</td>
+				<div className='overflow-x-auto shadow-lg rounded-lg'>
+					<table
+						role='table'
+						aria-labelledby='page-title'
+						className='min-w-full table-auto border-collapse border border-gray-300'
+					>
+						<thead className='bg-gradient-to-r from-indigo-500 to-purple-500 text-white'>
+							<tr role='row'>
+								<th scope='col' className='py-3 px-5 border-b font-semibold uppercase'>
+									S.No.
+								</th>
+								<th scope='col' className='py-3 px-5 border-b font-semibold uppercase'>
+									Percentage Funded
+								</th>
+								<th scope='col' className='py-3 px-5 border-b font-semibold uppercase'>
+									Amount Pledged
+								</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
+						</thead>
+						<tbody>
+							{currentRecords.map((project, index) => (
+								<tr
+									key={project['s.no']}
+									className='text-center hover:bg-gradient-to-r hover:from-green-100 hover:to-blue-100 transition-all duration-300'
+								>
+									<td className='py-3 px-5 border-b'>{indexOfFirstRecord + index + 1}</td>
+									<td className='py-3 px-5 border-b'>{project['percentage.funded']}%</td>
+									<td className='py-3 px-5 border-b text-green-600 font-semibold'>
+										${project['amt.pledged'].toLocaleString()}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 
-			<div className='flex justify-center items-center mt-6'>
-				<button
-					onClick={handlePrev}
-					aria-label='Previous Page'
-					disabled={currentPage === 1}
-					className='px-4 py-2 bg-blue-500 text-white rounded-md mr-4 disabled:opacity-50 transition-all duration-300 hover:bg-blue-600'
-				>
-					Previous
-				</button>
-
-				<button
-					onClick={handleNext}
-					aria-label='Next Page'
-					disabled={currentPage === totalPages}
-					className='px-4 py-2 bg-blue-500 text-white rounded-md disabled:opacity-50 transition-all duration-300 hover:bg-blue-600'
-				>
-					Next
-				</button>
+				<div className='flex justify-center items-center mt-8'>
+					<button
+						onClick={handlePrev}
+						aria-label='Previous Page'
+						disabled={currentPage === 1}
+						className='px-5 py-2 rounded-lg shadow-md bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold mr-4 disabled:opacity-50 disabled:cursor-not-allowed transition-transform transform hover:scale-105'
+					>
+						Previous
+					</button>
+					<button
+						onClick={handleNext}
+						aria-label='Next Page'
+						disabled={currentPage === totalPages}
+						className='px-5 py-2 rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-transform transform hover:scale-105'
+					>
+						Next
+					</button>
+				</div>
 			</div>
 		</div>
 	);
